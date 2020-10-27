@@ -3,6 +3,32 @@ function swap(index1, index2, arr) {
     [arr[index1], arr[index2]] = [arr[index2], arr[index1]];
 }
 
+function merge(arr1, arr2) {
+    let results = [];
+    let i = 0;
+    let j = 0;
+
+    while( i < arr1.length && j < arr2.length ) {
+        if (arr2[j] > arr1[i]) {
+            results.push(arr1[i]);
+            i++;
+        } else {
+            results.push(arr2[j]);
+            j++;
+        }
+    }
+    while (i < arr1.length) {
+        results.push(arr1[i]);
+        i++
+    }
+    while (j < arr2.length) {
+        results.push(arr2[j]);
+        j++
+    }
+
+    return results
+}
+
 //sorting algorithms
 
 function bubbleSort(arr) {
@@ -39,15 +65,26 @@ function selectionSort(arr) {
 }
 
 function insertionSort(arr) {
-    for ( let i = 1; i < arr.length; i++) {
+    for ( let i = 1; i < arr.length; i++ ) {
         let currentVal = arr[i];
+        let j = i - 1;
 
-        for ( var j = i - 1; j >= 0 && arr[j] > currentVal; j--) {
+        while ( j >= 0 && arr[j] > currentVal ) {
             arr[j + 1] = arr[j];
+            j--;
         }
-
         arr[j + 1] = currentVal;
     }
-    
     return arr;
+}
+
+//intermediate sorting algorithms
+
+function mergeSort(arr) {
+    if ( arr.length <= 1 ) return arr;
+    let mid = Math.floor(arr.length/2);
+    let left = mergeSort(arr.slice(0,mid));
+    let right = mergeSort(arr.slice(mid));
+
+    return merge(left, right);
 }
