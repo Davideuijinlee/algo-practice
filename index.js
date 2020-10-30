@@ -79,6 +79,7 @@ function selectionSort(arr) {
     return arr;
 }
 
+
 function insertionSort(arr) {
     for ( let i = 1; i < arr.length; i++ ) {
         let currentVal = arr[i];
@@ -114,12 +115,4 @@ function quickSort(arr, left=0, right=arr.length - 1) {
     }
 
     return arr;
-}
-
-function testArray(indexNum) {
-    let results = [];
-    results[indexNum] = 1;
-    
-
-    return results;
 }
